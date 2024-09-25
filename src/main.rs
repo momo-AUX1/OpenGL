@@ -83,12 +83,14 @@ const INDICES: [u32; 36] = [
     22,23,20,
 ];
 
-
-
 fn main(){
     let sdl = sdl2::init().unwrap();
     let video = sdl.video().unwrap();
     sdl.mouse().set_relative_mouse_mode(true);
+
+    let mut timer = sdl.timer().unwrap().ticks();
+    let mut fps_counter = 0;
+    let mut fps = 0;
 
     let gl_attr = video.gl_attr();
     gl_attr.set_context_profile(GLProfile::Core);
@@ -118,7 +120,7 @@ fn main(){
     let mut camera_front: Vector3<f32> = (camera_target - camera_pos).normalize();
 
     let model: Matrix4<f32> = Matrix4::identity();
-    let speed = 0.005;
+    let speed = 0.001;
 
     let vao;
     let view_loc;
@@ -161,7 +163,7 @@ fn main(){
         gl.enable_vertex_attrib_array(1);
         gl.vertex_attrib_pointer_f32(1, 3, glow::FLOAT, false, ::std::mem::size_of::<Vertex>() as i32, 12);
 
-        let model_array: [f32; 16] = [
+    let model_array: [f32; 16] = [
         model.x.x, model.x.y, model.x.z, model.x.w,
         model.y.x, model.y.y, model.y.z, model.y.w,
         model.z.x, model.z.y, model.z.z, model.z.w,
@@ -200,8 +202,16 @@ fn main(){
 
     loop {
         let events: Vec<Event> = event_pump.poll_iter().collect();
+        let current_time = sdl.timer().unwrap().ticks();
+        fps_counter += 1;
+        if current_time - timer >= 1000{
+            fps = fps_counter;
+            fps_counter = 0;
+            timer = current_time;
+            println!("FPS: {}", fps)
+        }
         for event in events {
-            println!("{:?}", event);
+            //println!("{:?}", event);
 
             match event {
                 Event::Quit { timestamp } => { 
