@@ -1,0 +1,40 @@
+[package]
+name = "OpenGL"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+#sqlite = "0.30.1"
+#diesel = { version = "2.0.2", features = ["sqlite"] }
+rand = "0.8.5"
+#crossterm = "0.25.0"
+#rlua = "0.19.7"
+#wasm-bindgen = "0.2.74"
+#rocket = { version = "0.5.0", features = ["secrets", "json"] }
+dotenvy = "0.15"
+#fltk = "1.2"
+#rocket_dyn_templates = { version = "0.1.0", features = ["handlebars", "tera"] }
+fernet = "0.2.2"
+libloading = "0.7"
+memmap2 = "0.9.4"
+mmap = "0.1.1"
+#rustube = "0.6.0"
+#glutin = "0.29.0"
+#nalgebra = "0.29.0"
+#gtk = "0.14"
+druid = "0.7"
+sysinfo = "0.29"
+#jni-simple = { version = "0.1.4", features = ["loadjvm"] }
+#jni = "0.21.1"
+sdl2 = "0.35"
+gl = "0.14"
+glow = "0.12"
+glium = "0.32"
+cgmath = "0.18"
+bytemuck = { version = "1.13", features = ["derive"] }
